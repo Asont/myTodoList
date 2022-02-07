@@ -1,12 +1,18 @@
 import React from 'react';
+import Button from "./Button";
 
 type TodoListTitleType = {
+    id:string
     titleList:string
+    removeTodoList :(todoListID: string)=>void
 }
 
-const TodoListTitle:React.FC<TodoListTitleType> = ({titleList}) => {
+const TodoListTitle:React.FC<TodoListTitleType> = ({titleList, removeTodoList,id}) => {
     return (
-       <h3>{titleList}</h3>
+        <>
+            <span><b>{titleList}</b></span>
+        <Button title={"x"} onClickHandler={()=>removeTodoList(id)}/>
+        </>
     );
 };
 

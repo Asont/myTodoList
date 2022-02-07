@@ -2,3 +2,7 @@
   padding: 30px;
   display: flex;
 }
+
+.App div {
+  margin: 10px;
+}
