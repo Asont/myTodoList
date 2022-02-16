@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {TodolistTitle} from "./TodolistTitle";
 import {FilterType, TaskType} from "../App";
 import {Task} from "./Task";
 import {Button} from "./Button";
+import {InputTextField} from "./InputTextField";
 
 type TodoListPropsType = {
     id:string
@@ -11,9 +12,13 @@ type TodoListPropsType = {
     changeFilter :(todolistID:string, value:FilterType) =>void
     removeTask : (todolistID:string, taskID:string) =>void
     changeCheckBox : (todolistID:string, taskID:string, isDone:boolean) => void
+    addTasks : (todolistID:string, title:string) => void
+    editTodoListTitle : (todoListID:string, newTitle:string) =>void
 }
 
 export const TodoList = (props:TodoListPropsType) => {
+
+
 
     const removeTodolistHandler = (taskID:string)=>{
         props.removeTask(props.id, taskID)
@@ -33,12 +38,20 @@ export const TodoList = (props:TodoListPropsType) => {
     const onClickChangeFilterActive= ()=>props.changeFilter(props.id,"Active")
     const onClickChangeFilterCompleted= ()=>props.changeFilter(props.id,"Completed")
 
+    const addTitleHandler = (newTitle:string) =>{
+        props.addTasks(props.id, newTitle)
+    }
+
+    const editTitleTodolistHandler = (newTitle:string) =>{
+        debugger
+        props.editTodoListTitle(props.id, newTitle)
+    }
+
     return (
         <div>
-            <TodolistTitle titleList={props.titleList}/>
+            <TodolistTitle titleList={props.titleList} callBack={editTitleTodolistHandler}/>
             <div>
-                <input/>
-                <Button title={"+"} callBack={()=>{}}/>
+               <InputTextField addTitleHandler={addTitleHandler}/>
             </div>
             <ul>
                 {tasksForRender}

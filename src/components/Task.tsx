@@ -19,8 +19,7 @@ export const Task = (props:TaskPropsType) => {
     return (
         <li>
             <InputCheckBox isDone={props.isDone} callBack={onChangeCheckBox}/>
-            <span>{props.title}
-            </span>
+            <span>{props.title}</span>
             <Button title={"x"} callBack={()=>{props.removeTask(props.id)}}/>
         </li>
     );
